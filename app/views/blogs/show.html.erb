@@ -40,7 +40,7 @@
       <div class="card ">
         <div class="card-body ">
           <%= form_tag("/blogs/#{@blog.id}/comments", method: :post) do %>
-            <textarea name="text" placeholder="コメントする" rows="2" cols="30" class="form-control"></textarea>
+            <textarea name="text" placeholder="コメントする" rows="2" cols="30" class="form-control" required='true'></textarea>
             <input type="submit" value="送信" class="btn btn-raised btn-primary">
           <% end %>
           <div class="comments">   
@@ -48,10 +48,10 @@
             <% if @comments %>
               <% @comments.each do |comment| %>
                 <p>
-                  <% if user_signed_in? %>
-                    <strong><%= link_to comment.user.username, "" %>：</strong>
-                  <% else %>
-                    <strong>GestUser</strong>
+                  <% if comment.user_id == 1000000 %>
+                  <strong>GuestUser</strong>
+                  <% elsif comment.user_id == 1 %>
+                  <strong>管理者</strong>
                   <% end %>
                   <%= comment.text %>
                 </p>
