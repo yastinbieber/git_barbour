@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+    <%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
+      <h2>お問い合わせ</h2>
+      <hr>
+      <small class="text-muted">お問い合わせからご要望等何でもお待ちしております。</small>
+      <% if @inquiry.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <strong>入力内容にエラーがあります</strong>
+          <ul>
+            <% @inquiry.errors.each do |attr, msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-12">
+        	<div class="card card-nav-tabs">
+        		<div class="card-body">
+    			  <%= f.label :name %><span class="text-danger">（必須）</span><br>
+    			  <%= f.text_field :name, class: "form-control" %><br>
+    			  <%= f.label :email %><span class="text-danger">（必須）</span><br>
+    			  <%= f.text_field :email, class: "form-control" %><br>
+    			  <%= f.label :message %><br>
+    			  <%= f.text_area :message, class: "form-control", :size=>"60x10" %><br>
+    			  </div>
+    		  </div>
+    	  </div>
+      </div>
+      <%= f.submit '確認', class: 'btn btn-primary' %>
+    <% end %>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>

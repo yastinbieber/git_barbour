@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+      <div class="mx-auto text-center">
+      <h2 class="pb-5"><%= @picpage.title %></h2>
+        <div class="container-search-result-box" title="<%= @picpage.title %>">
+          <% if @picpage.images.attached? %>
+            <% @picpage.images.each do |image| %>
+              <%= image_tag image, :size =>'2240x1260' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="text-left">
+        <%= link_to '編集', "/picpages/#{@picpage.id}/edit", method: :get, class: "btn btn-raised btn-primary" %>
+        <%= link_to '削除', "/picpages/#{@picpage.id}", method: :delete, class: "btn btn-raised btn-danger" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>

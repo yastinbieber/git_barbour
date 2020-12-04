@@ -1,0 +1,104 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require bootstrap-material-design
+ */
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+html,body{
+  padding:0;
+  margin:0;
+  height:100%;
+  // background-color: #EEEEEE;
+}
+
+.mainground {
+  background: url('nobarbournolife.png') fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  padding: 2%;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.img-size {
+  width: 320px;
+  height: 320px;
+}
+
+.img-box {
+  height: 180px;
+}
+
+.img-index {
+  width: 224px;
+  height: 126px;
+}
+
+
+.sb {
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sb__item {
+  flex: 1;
+  text-align: center;
+  padding: 1rem 0;
+  a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+// Button Colors
+@mixin sb-color($color) {
+  background: $color;
+  &:hover { background: darken($color, 10%); }
+}
+
+.sb--twitter  { @include sb-color(#6bace2); }
+.sb--facebook { @include sb-color(#445d93); }
+.sb--google   { @include sb-color(#d36054); }
+.sb--hatena   { @include sb-color(#4c7ec6); }
+.sb--pocket   { @include sb-color(#e15c69); }
+.sb--feedly   { @include sb-color(#94be61); }
+
+// Responsive Layout
+@media all and (min-width: 480px) {
+  .sb { flex-flow: row; }
+  .sb__item { padding: .5rem 0; }
+}
+
+input[id="sbox"] {
+        width: 300px;
+        height: 40px;
+}
+
+input[id="sbtn"] {
+        width: 50px;
+        height: 40px;
+}

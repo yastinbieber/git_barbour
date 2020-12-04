@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+      <%= link_to '投稿(管理者)', "/blogs/new", method: :get, class: "btn btn-raised btn-primary" %>
+      <h5>検索結果</h5>
+      <hr class="mb-3">
+      <% @blogs.each do |blog| %>
+        <div class="card py-2 btn">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+            <% if blog.image.attached? %>
+              <%= image_tag blog.image %>
+            <% else %>
+              <%= image_tag "barbourimg.png", size: '224x126' %>
+            <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body text-left">
+                <h5><%= link_to "#{blog.title}", "/blogs/#{blog.id}", method: :get, class: "" %></h5>
+                <p class="card-text"><%= truncate(blog.text, length: 20) do %></p>
+                <% end %>
+                <p class="card-text"><small class="text-muted"><%= blog.updated_at %></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>
+    

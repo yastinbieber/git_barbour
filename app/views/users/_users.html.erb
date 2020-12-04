@@ -1,0 +1,21 @@
+<div class="card btn btn-raised btn-primary">
+  <h4 class="py-3">Profile</h4>
+</div>
+<div class="card card-profile">
+  <div class="card-avatar pt-2">
+    <% if current_user.image.attached? %>
+      <%= image_tag current_user.image, class: "rounded-circle", width: "150px", height: "150px" %>
+    <% else %>
+      <img class="rounded-circle" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture" width="150px" height="150px">
+    <% end %>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title"><%= current_user.username %></h4>
+    <p class="card-description">
+      <%= current_user.text %>
+    </p>
+    <% if user_signed_in? && current_user.id == 1 %>
+      <%= link_to "マイページ", user_path(current_user), class: "btn btn-raised btn-primary" %>
+    <% end %>
+  </div>
+</div>

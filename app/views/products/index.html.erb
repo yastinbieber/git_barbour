@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+      <h5>Products Gallery</h5>
+      <% if user_signed_in? && current_user.id == 1 %>
+        <%= link_to '投稿(管理者)', "/products/new", method: :get, class: "btn btn-raised btn-primary" %>
+      <% end %>
+      <hr class="mb-3">
+      <% @products.each do |product| %>
+        <div class="col-md-4  ">
+          <div class="card row">
+            <div class="container-search-result-box" title="<%= product.title %>">
+              <a href="/products/<%= product.id %>">
+                <% if product.image.attached? %>
+                  <%= image_tag product.image, class: "img-box" %>
+                <% end %>
+                <h3 class="pt-2"><%= product.title %></h3>
+                <p class="py-2">¥<%= product.price %>-</p>
+                <% if user_signed_in? && current_user.id == 1 %>
+                  <%= link_to '編集', "/products/#{product.id}/edit", method: :get, class: "btn" %>
+                  <%= link_to '削除', "/products/#{product.id}", method: :delete, class: "btn" %>
+                <% end %>
+                  <%= link_to '詳細', "/products/#{product.id}", method: :get, class: "btn" %>
+              </a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @products %>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+      <div class="card card-nav-tabs">
+        <div class="card-header card-header-tabs card-header-primary">
+          <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+              <h4 class="nav-tabs-title">
+                商品を登録する(編集)
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+        <%= form_for(@product) do |f| %>
+          <div class="form-group">
+            <span><%= f.label :image, "画像アップロード：" %></span><br>
+            <%= f.file_field :image %><br><br>
+          </div>
+          <div class="form-group">
+            <span><%= f.label :title, "title：" %></span><br>
+            <%= f.text_field :title, placeholder: "title", class: 'input form-control' %>
+          </div>
+          <div class="form-group">
+            <span><%= f.label :price, "price：" %></span><br>
+            <%= f.number_field :price, placeholder: "price", class: 'input form-control' %>
+          </div>
+          <div class="form-group">
+            <span><%= f.label :linkurl, "linkurl：" %></span><br>
+            <%= f.text_field :linkurl, placeholder: "linkurl", class: 'input form-control' %>
+          </div>
+          <%= f.submit "送信", class: "btn btn-raised btn-primary" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>

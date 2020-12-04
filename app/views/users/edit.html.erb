@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row py-5">
+    <div class="col-md-8">
+      <div class="card card-nav-tabs">
+        <div class="card-body">
+          <%= form_for @user do |f| %>
+            <br><%= f.label :image／プロフィール画像 %><br>
+            <%= f.file_field :image %><br><br>
+            <div class="form-group has-primary">
+              <%= f.label :username／ユーザー名 %>
+              <%= f.text_field :username, placeholder: "username", class: 'form-control', required: true %><br>
+            </div>
+            <div class="form-group has-primary">
+              <%= f.label :text／自己紹介文 %>
+                <%= f.text_field :text, placeholder: "text", class: 'form-control' %><br>
+              <%= f.submit "送信", class: "btn btn-raised btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+    </div>
+  </div>
+</div>

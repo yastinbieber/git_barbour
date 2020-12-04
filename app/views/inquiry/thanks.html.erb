@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+      <div class="card ">
+        <div class="card-body text-center">
+          <h4 class="card-text">お問い合わせありがとうございました！</h4>
+          <%= link_to "戻る", user_path(current_user), class: "btn btn-raised btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>

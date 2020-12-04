@@ -1,0 +1,36 @@
+
+  <%= form_tag('/blogs/search', method: :get) do %>
+    <input id="sbox" name="keyword" type="text" placeholder="Blogキーワードを入力" />
+    <input id="sbtn" type="submit" value="検索" >
+  <% end %>
+  <form accept-charset="utf-8" action="/" class="js-search-submit" method="get">
+  </form>
+  <br>
+  <div class="card btn btn-raised btn-primary">
+    <h4 class="py-3">最近の投稿</h4>
+  </div>
+  <div class="card ">
+  <% @blogs_desc.each do |blog| %>
+    <div class="card ">
+      <div class="row col-md-10 col-md-offset-1 mx-auto text-center">
+        <div class="col-md-4 py-3">
+          <div class="container-search-result-box" title="<%= blog.title %>">
+            <a href="/blogs/<%= blog.id %>">
+            <% if blog.image.attached? %>
+              <%= image_tag blog.image %>
+            <% else%>
+              <%= image_tag "barbourimg.png", size: '224x126' %>
+            <% end %>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body text-left">
+            <h5 class="text-left"><%= link_to "#{blog.title}", "/blogs/#{blog.id}", method: :get, class: "" %></h5>
+            <!--<p class="card-text"><small class="text-muted"><%= blog.updated_at %></small></p>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>

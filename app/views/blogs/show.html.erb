@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row py-5">
+    <div class="col-md-8 col-sm-12">
+      <div class="card ">
+        <div class="card-body">
+          <h4 class="nav-tabs-title py-2"><%= @blog.title %></h4>
+          <% if @blog.image.attached? %>
+            <%= image_tag @blog.image %>
+          <% end %>
+          <!--sharebtn-->
+          <ul class="sb pt-2">
+            <li class="sb__item sb--twitter">
+              <a href="https://twitter.com/share?text=TITLE&amp;url=URL&amp;via=DriftwoodJP" target="_blank" rel="nofollow">
+              Twitter</a>
+            </li>
+            <li class="sb__item sb--facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=URL" target="_blank" rel="nofollow">Facebook</a>
+            </li>
+            <li class="sb__item sb--google">
+              <a href="https://plus.google.com/share?url=URL" target="_blank" rel="nofollow">Google+</a>
+            </li>
+            <li class="sb__item sb--hatena">
+              <a href="https://b.hatena.ne.jp/add?mode=confirm&amp;url=URL" target="_blank" rel="nofollow">Hatena</a>
+            </li>
+            <li class="sb__item sb--pocket">
+              <a href="http://getpocket.com/edit?url=URL" target="_blank" rel="nofollow">Pocket</a>
+            </li>
+            <li class="sb__item sb--feedly">
+              <a href='http://cloud.feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fwww.d-wood.com%2Ffeed' target='_blank' rel="nofollow">Feedly</a>
+            </li>
+          </ul>
+          <!--kokomade-->
+          <p class="text-left my-5"><%= markdown(@blog.text).html_safe %></p>
+          <small class="text-muted"><%= @blog.updated_at %></small><br>
+          <%= link_to '編集', "/blogs/#{@blog.id}/edit", method: :get, class: "btn btn-raised btn-primary" %>
+          <%= link_to '削除', "/blogs/#{@blog.id}", method: :delete, class: "btn btn-raised btn-danger" %>
+        </div>
+      </div>
+      <br>
+      <div class="card ">
+        <div class="card-body ">
+          <%= form_tag("/blogs/#{@blog.id}/comments", method: :post) do %>
+            <textarea name="text" placeholder="コメントする" rows="2" cols="30" class="form-control"></textarea>
+            <input type="submit" value="送信" class="btn btn-raised btn-primary">
+          <% end %>
+          <div class="comments">   
+            <p class="text-muted">＜コメント一覧＞</p>
+            <% if @comments %>
+              <% @comments.each do |comment| %>
+                <p>
+                  <% if user_signed_in? %>
+                    <strong><%= link_to comment.user.username, "" %>：</strong>
+                  <% else %>
+                    <strong>GestUser</strong>
+                  <% end %>
+                  <%= comment.text %>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>

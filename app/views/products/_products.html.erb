@@ -1,0 +1,23 @@
+
+  <div class="card btn btn-raised btn-primary">
+    <h4 class="py-3">最近の商品</h4>
+  </div>
+  <div class="card ">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 mx-auto text-center ">
+      <% @products_desc.each do |product| %>
+        <div class="py-2">
+          <div class="container-search-result-box" title="<%= product.title %>">
+            <a href="/products/<%= product.id %>">
+              <% if product.image.attached? %>
+                <%= image_tag product.image %>
+              <% else %>
+                <%= image_tag "barbourimg.png", size: '224x224' %>
+              <% end %>
+            </a>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>

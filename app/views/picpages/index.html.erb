@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-8">
+      <h5>Picture Gallery</h5>
+      <% if user_signed_in? && current_user.id == 1 %>
+        <%= link_to '投稿(管理者)', "/picpages/new", method: :get, class: "btn btn-raised btn-primary" %>
+      <% end %>
+      <hr class="mb-3">
+      <% @picpages.each do |picpage| %>
+        <div class="col-md-6  ">
+          <div class="container-search-result-box" title="<%= picpage.title %>">
+            <a href="/picpages/<%= picpage.id %>">
+              <% if picpage.images.attached? %>
+                <% picpage.images.each do |image| %>
+                  <%= image_tag image, class: "img-size" %> <br>
+                  <% break %>
+                <% end %>
+              <% end %>
+              <%= link_to '編集', "/picpages/#{picpage.id}/edit", method: :get, class: "btn" %>
+              <%= link_to '削除', "/picpages/#{picpage.id}", method: :delete, class: "btn" %>
+              <%= link_to '詳細', "/picpages/#{picpage.id}", method: :get, class: "btn" %>
+            </a>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @picpages %>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= render 'blogs/blogs' %>
+      <%= render 'products/products' %>
+      <%= render 'users/users' %>
+    </div>
+  </div>
+</div>
